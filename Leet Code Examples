@@ -184,3 +184,67 @@ int main()
 }
 
 
+
+ 4Sum
+ 
+Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+
+0 <= a, b, c, d < n
+a, b, c, and d are distinct.
+nums[a] + nums[b] + nums[c] + nums[d] == target
+You may return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
+
+SOLUTION C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool sum4(int arr[],int n,int target)
+{
+    sort(arr,arr+n);
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=i+1;j<n-2;j++)
+        {
+            int k = j+1;
+            int l = n-1;
+            while(k<l)
+            {
+                if(arr[i]+arr[j]+arr[k]+arr[l]==target)
+                {
+                    printf("%d,%d,%d,%d",arr[i],arr[j],arr[k],arr[l]);
+                    return true;
+
+                }
+                else if(arr[i]+arr[j]+arr[k]+arr[l]<target)
+
+                    k++;
+
+                else
+
+
+                    l--;
+                }
+
+            }
+        }
+        return false;
+    }
+
+
+int main()
+{
+    int arr[] = {1,0,-1,0,-2,2};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int target = 0;
+    sum4(arr,n,target);
+}
+
