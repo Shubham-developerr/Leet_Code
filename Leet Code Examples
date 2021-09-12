@@ -121,4 +121,66 @@ int main()
 }
 
 
+3Sum Closest
+
+Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
+
+Return the sum of the three integers.
+
+You may assume that each input would have exactly one solution.
+
+ 
+
+Example 1:
+
+Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+Example 2:
+
+Input: nums = [0,0,0], target = 1
+Output: 0
+
+SOLUTION C++;
+
+#include<bits/stdc++.h>
+using namespace std;
+int sum3(vector<int> &arr, int x)
+{
+    sort(arr.begin(),arr.end());
+
+    int closestsum = 10000000;
+    for(int i =0; i<arr.size()-2;i++)
+    {
+        int j = i+1;
+        int k = arr.size()-1;
+        while(j<k)
+        {
+            int sum = arr[i]+arr[j]+arr[k];
+            if(abs(1LL*x-sum)<abs(1LL*x-closestsum))
+            {
+
+                closestsum = sum;
+            }
+        if(sum<x)
+        {
+            k--;
+        }
+        else
+        {
+            j++;
+        }
+
+    }
+    }
+    return closestsum;
+}
+int main()
+{
+    vector<int>arr = {1,2,-1,-2,3,4};
+    int x = 4;
+    cout<<sum3(arr,x);
+    return 0;
+}
+
 
